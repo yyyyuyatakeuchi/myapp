@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'mypage/show'
+  get '/mypage/:id/show', to: 'mypage#show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
