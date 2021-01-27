@@ -27,6 +27,11 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <%= f.label :address%><br />
+  <%= f.select :address, [["東京", "tokyo"], ["大阪","osaka"]] %>
+
+  <%= f.hidden_field :isTalent, :value => @talent%>
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
