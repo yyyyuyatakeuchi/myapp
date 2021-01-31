@@ -1,0 +1,18 @@
+<%= form_with(model: @profile, local: true) do |f| %>
+      <%= f.label :name, "名前" %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :history, "芸歴" %>
+      <%= f.text_field :history, class: 'form-control' %>
+
+      <%= f.label :belongs, "所属" %>
+      <%= f.text_field :belongs, class: 'form-control' %>
+
+      <%= f.label :character, "芸風" %>
+      <%= f.text_field :character, class: 'form-control' %>
+
+      <%= f.label :free_write, "自由記入欄" %>
+      <%= f.text_field :free_write, class: 'form-control' %>
+
+      <%= f.submit "Create my Profile", class: "btn btn-primary" %>
+    <% end %>

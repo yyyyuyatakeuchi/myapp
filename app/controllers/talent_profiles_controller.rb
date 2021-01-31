@@ -1,12 +1,13 @@
 class TalentProfilesController < ApplicationController
-  before_action :authenticate_user! 
+  #before_action :authenticate_user! 
 
   def new
     
   end
 
   def edit
-    
+    #@user = User.find(params[:id])
+    @profile = TalentProfile.find_by(user_id: current_user.id)
   end
 
   def create
@@ -14,12 +15,11 @@ class TalentProfilesController < ApplicationController
   end
 
   def update
-    @profile = TalentProfile.new(profile_params)
-    @profile.user = current_user
-    if @profile.save
+    @profile = TalentProfile.find_by(user_id: current_user.id)
+    if @profile.update(profile_params)
       redirect_to mypage_path(current_user.id)
     else
-      render :new
+      render :edit
     end
   end
 
@@ -29,7 +29,7 @@ class TalentProfilesController < ApplicationController
 
   def profile_params
     params.require(:talent_profile).permit(
-      :history, :belongs, :character, :free
+      :name, :history, :belongs, :character, :free_write
     )
   end
 end

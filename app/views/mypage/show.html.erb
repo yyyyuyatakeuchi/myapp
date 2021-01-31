@@ -1,6 +1,6 @@
 <h1><%= @user.name %></h1>
 <%= gravatar_for @user%>
-<%= link_to "プロフィール編集", "#" %>
+<%= link_to "プロフィール編集", edit_talent_profile_path %>
 
 <%= @user.isTalent if Rails.env.development? %>
 
