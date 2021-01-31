@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'users/index'
   root 'static_pages#home'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   #devise_scope :users do
     #get '/users', to: redirect("/users/sign_up")
   #end
-
+  resources :users, only: [:index]
   resources :mypage, only: [:show]
   resources :relationships, only: [:create, :destroy]
   resources :talent_profiles, only: [:new, :edit, :create, :update, :destroy]

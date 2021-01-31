@@ -18,7 +18,11 @@
 <h3>芸人一覧</h3>
 
 <ul>
-  <% @users.each do |user| %>
-    <li><%= link_to user.name, mypage_path(user) %></li>
+  <% @users.first(5).each do |user| %>
+    <li>
+      <%= link_to gravatar_for(user),mypage_path(user) %>
+      <%= link_to user.talent_profile.name, mypage_path(user) %>
+    </li>
   <% end %>
 </ul>
+<%= link_to "もっと見る", users_path %>

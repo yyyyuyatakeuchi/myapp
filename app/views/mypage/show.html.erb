@@ -1,10 +1,9 @@
-<h1><%= @user.name %></h1>
+<h1><%= @user_name %></h1>
 <%= gravatar_for @user%>
-<%= link_to "プロフィール編集", edit_talent_profile_path %>
-
 <%= @user.isTalent if Rails.env.development? %>
 
 <% if @user.isTalent %>
+<%= link_to "プロフィール編集", edit_talent_profile_path %>
 <p>芸人でごわす</p>
 
   <% if current_user && !current_user.isTalent %>
@@ -23,7 +22,6 @@
     </div>
   <% end %>
 
-<%= @user.talent_profile.name%>
 <%= @user.talent_profile.history%>
 <%= @user.talent_profile.belongs%>
 <br>
