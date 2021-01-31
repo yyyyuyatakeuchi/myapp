@@ -6,14 +6,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
-    @talent = params[:talent]
+    @user = User.new
+    @talent_signup = params[:talent]
+    #@profile = @user.build_talent_profile if @talent_signup
+    #@profile = TalentProfile.new if @talent
     super
   end
 
+  
+
+  
+
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @user = User.new(sign_up_params)
+    if @user.save
+      session["devise.regist_data"] = {user: @user.attributes}
+      session["devise.regist_data"][:user]["password"] = params[:user][:password]
+      @user.create_talent_profile if @user.isTalent
+      sign_in(:user, @user)
+      redirect_to mypage_path(@user)
+    else
+      @talent_signup = @user.isTalent
+      render :new
+    end
+  end
 
   # GET /resource/edit
   # def edit

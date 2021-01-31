@@ -4,3 +4,42 @@
 
 <%= @user.isTalent if Rails.env.development? %>
 
+<% if @user.isTalent %>
+<p>芸人でごわす</p>
+
+  <% if current_user && !current_user.isTalent %>
+    <div id="follow_form">
+      <% if current_user.following?(@user) %>
+        <%= form_with(model: current_user.relationships.find_by(followed_id: @user.id),
+                      html: { method: :delete }, local: true) do |f| %>
+          <%= f.submit "Unfollow", class: "btn" %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
+          <div><%= hidden_field_tag :followed_id, @user.id %></div>
+          <%= f.submit "Follow", class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+<%= @user.talent_profile.name%>
+<%= @user.talent_profile.history%>
+<%= @user.talent_profile.belongs%>
+<br>
+<%= @user.talent_profile.character%>
+<%= @user.talent_profile.free_write%>
+<p>以上</p>
+
+<% else %>
+<p>一般の人です</p>
+  <% if @users.any? %>
+    <% @users.each do |user| %>
+      <li>
+        <%= link_to gravatar_for(user),mypage_path(user) %>
+        <%= link_to user.name, mypage_path(user) %>
+      </li>
+    <% end %>
+  <% end %>
+  <%= paginate @users%>
+<% end %>

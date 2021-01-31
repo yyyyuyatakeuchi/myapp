@@ -4,10 +4,14 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
+<% unless @talent_signup %>
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+<% else %>
+    <%= f.hidden_field :name, :value => 'talent_user' %>
+<% end %>
 
   <div class="field">
     <%= f.label :email %><br />
@@ -30,7 +34,7 @@
   <%= f.label :address%><br />
   <%= f.select :address, [["東京", "tokyo"], ["大阪","osaka"]] %>
 
-  <%= f.hidden_field :isTalent, :value => @talent%>
+  <%= f.hidden_field :isTalent, :value => @talent_signup%>
 
   <div class="actions">
     <%= f.submit "Sign up" %>

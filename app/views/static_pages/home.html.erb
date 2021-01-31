@@ -1,8 +1,9 @@
 <h1>お笑い芸人依頼サービス</h1>
-<%= link_to "マイページ", 'mypage/show' %>
+
 <p>日常に（お）笑いを</p>
 
 <% if current_user%>
+  <%= link_to "マイページ", mypage_path(current_user) %>
   <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to "芸人ログイン", new_user_session_path %>
@@ -11,13 +12,13 @@
   <br><br>
   <%= link_to "ユーザーログイン", new_user_session_path %>
   <br>
-  <%= link_to "ユーザー新規登録", new_user_registration_path(talent: false) %>
+  <%= link_to "ユーザー新規登録", new_user_registration_path %>
 <% end %>
 
 <h3>芸人一覧</h3>
 
 <ul>
   <% @users.each do |user| %>
-    <li><%= link_to user.name, "/mypage/#{user.id}/show" %></li>
+    <li><%= link_to user.name, mypage_path(user) %></li>
   <% end %>
 </ul>

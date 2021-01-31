@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def home
-    @users = User.all
+    @users = User.where(isTalent: "true")
   end
 end
