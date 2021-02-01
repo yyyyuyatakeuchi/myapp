@@ -1,17 +1,8 @@
 class TalentProfilesController < ApplicationController
-  #before_action :authenticate_user! 
-
-  def new
-    
-  end
+  before_action :authenticate_user! 
 
   def edit
-    #@user = User.find(params[:id])
     @profile = TalentProfile.find_by(user_id: current_user.id)
-  end
-
-  def create
-    
   end
 
   def update
@@ -21,10 +12,6 @@ class TalentProfilesController < ApplicationController
     else
       render :edit
     end
-  end
-
-  def destroy
-
   end
 
   def profile_params

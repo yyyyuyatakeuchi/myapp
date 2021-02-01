@@ -1,48 +1,56 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  protect_from_forgery with: :exception
+
   before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
+  before_action :authenticate_user!, only: [:update]
 
   # GET /resource/sign_up
   def new
     @user = User.new
     @talent_signup = params[:talent]
+    @followed_user = params[:followed_user]
     #@profile = @user.build_talent_profile if @talent_signup
     #@profile = TalentProfile.new if @talent
     super
-  end
-
-  
-
-  
+  end  
 
   # POST /resource
   def create
     @user = User.new(sign_up_params)
+    @followed_user = params[:followed_user]
     if @user.save
       session["devise.regist_data"] = {user: @user.attributes}
       session["devise.regist_data"][:user]["password"] = params[:user][:password]
       @user.create_talent_profile if @user.isTalent
       sign_in(:user, @user)
-      redirect_to mypage_path(@user)
+      flash[:info] = 'ユーザー登録できたわ'
+      redirect_back_or @user
     else
       @talent_signup = @user.isTalent
       render :new
     end
   end
 
-  
+  def redirect_back_or(user)
+    if @followed_user
+      redirect_to mypage_path(@followed_user)
+    else
+      redirect_to mypage_path("1")
+    end
+  end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  #def edit
+  #  super
+  #end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  #def update
+  #  super
+  #end
 
   # DELETE /resource
   # def destroy
@@ -59,16 +67,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # protected
-
+  
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :isTalent, :address])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :isTalent, :address])
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

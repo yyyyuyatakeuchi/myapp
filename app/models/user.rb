@@ -18,6 +18,11 @@ end
 def following?(other_user)
   following.include?(other_user)
 end
+
+def update_resource(resource, params)
+  resource.update_without_password(params)
+end
+
   #before_save { self.email = email.downcase }
   #VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   #validates :name,  presence: true, length: { maximum: 30 }

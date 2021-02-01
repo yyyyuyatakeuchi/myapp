@@ -35,6 +35,7 @@
   <%= f.select :address, [["東京", "tokyo"], ["大阪","osaka"]] %>
 
   <%= f.hidden_field :isTalent, :value => @talent_signup%>
+  <%= hidden_field_tag :followed_user, @followed_user%>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
