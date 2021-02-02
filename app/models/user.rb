@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :relationships, foreign_key: "follower_id", dependent: :destroy
-  has_many :following, through: :relationships, source: :followed  # Include default devise modules. Others available are:
+  has_many :following, through: :relationships, source: :followed 
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
+  #has_many :rooms, through: :entries
+  # Include default devise modules. Others available are:
   has_one :talent_profile, dependent: :destroy
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

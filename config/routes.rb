@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/show'
   get 'users/index'
   root 'static_pages#home'
   devise_for :users, controllers: {
@@ -11,6 +13,8 @@ Rails.application.routes.draw do
   #end
   resources :users, only: [:index]
   resources :mypage, only: [:show]
+  resources :rooms, only: [:index, :create, :show]
+  resources :messages, only: [:create]
   resources :relationships, only: [:create, :destroy]
   resources :talent_profiles, only: [:edit, :update,]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

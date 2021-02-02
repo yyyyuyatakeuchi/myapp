@@ -26,12 +26,28 @@
         <% end %>
       <% end %>
     </div>
+
+    <% if @haveRoom == true %>
+      <%= link_to "DMM", room_path(@roomId) %>
+    <% else %>
+      <%= form_with(model: @room, url: rooms_path, local: true) do |f| %>
+        <%= fields_for @entry do |e| %>
+          <%= e.hidden_field :user_id, value: @user.id %>
+        <% end %>
+        <%= f.submit "DMC", class: "btn btn-primary" %>
+      <% end %>
+    <% end %> 
   <% end %>
   
   <% unless user_signed_in? %>
-   <%= button_to "Follow", new_user_registration_path, class: "btn btn-primary",
-                  method: 'get', params: {followed_user: @user} %>
+    <%= button_to "Follow", new_user_registration_path, class: "btn btn-primary",
+                    method: 'get', params: {followed_user: @user} %>
+    <%= button_to "DM", new_user_registration_path, class: "btn btn-primary",
+                    method: 'get', params: {followed_user: @user} %>
   <% end %>
+
+  
+
   
 
 <%= @user.talent_profile.history%>
