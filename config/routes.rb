@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :mypage, only: [:show]
   resources :rooms, only: [:index, :create, :show]
   resources :messages, only: [:create]
-  resources :relationships, only: [:create, :destroy]
+  resources :relations, only: [:create, :destroy]
   resources :talent_profiles, only: [:edit, :update,]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

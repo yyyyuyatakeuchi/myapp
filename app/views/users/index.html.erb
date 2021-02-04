@@ -4,7 +4,7 @@
 <% @users.each do |user| %>
   <li>
     <%= link_to gravatar_for(user),mypage_path(user) %>
-    <%= link_to user.talent_profile.name, mypage_path(user) %>
+    <%= link_to user.name, mypage_path(user) %>
     <%= user.talent_profile.history%>
     <%= user.talent_profile.belongs%>
   </li>

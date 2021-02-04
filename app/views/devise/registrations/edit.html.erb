@@ -1,14 +1,15 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
-
+<div class="gravatar_edit">
+      <%= gravatar_for @user %><br><br>
+      <a href="https://gravatar.com/emails" target="_blank">change</a>
+    </div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <% unless current_user.isTalent %>
     <div class="field">
       <%= f.label :name %><br />
       <%= f.text_field :name %>
     </div>
-  <% end %>
 
   <div class="field">
     <%= f.label :email %><br />

@@ -4,7 +4,6 @@ class MypageController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user.isTalent
-      @user_name = @user.talent_profile.name
       if user_signed_in?
         @currentUserEntry = Entry.where(user_id: current_user.id)
         @userEntry = Entry.where(user_id: @user.id)
@@ -24,7 +23,6 @@ class MypageController < ApplicationController
         end
       end
     else
-      @user_name = @user.name
       @users = @user.following.page(params[:page])
     end
   end

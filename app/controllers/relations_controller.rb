@@ -1,4 +1,4 @@
-class RelationshipsController < ApplicationController
+class RelationsController < ApplicationController
   before_action :logged_in_user
 
   def create
@@ -8,7 +8,7 @@ class RelationshipsController < ApplicationController
   end
 
   def destroy
-    user = Relationship.find(params[:id]).followed
+    user = Relation.find(params[:id]).followed
     current_user.unfollow(user)
     redirect_to mypage_path(user)
   end

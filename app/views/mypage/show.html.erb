@@ -1,5 +1,15 @@
-<%= gravatar_for @user%>
-<h1><%= @user_name %></h1>
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <%= gravatar_for @user%>
+      <div class="talent">
+        <h1><%= @user.name %></h1>
+      </div>
+    </section>
+  </aside>
+</div>
+
 <% if @user == current_user%>
   <%= link_to "アカウント情報編集", edit_user_registration_path %>
 <% end %>
@@ -15,12 +25,12 @@
   <% if current_user && !current_user.isTalent %>
     <div id="follow_form">
       <% if current_user.following?(@user) %>
-        <%= form_with(model: current_user.relationships.find_by(followed_id: @user.id),
+        <%= form_with(model: current_user.relations.find_by(followed_id: @user.id),
                       html: { method: :delete }, local: true) do |f| %>
           <%= f.submit "Unfollow", class: "btn" %>
         <% end %>
       <% else %>
-        <%= form_with(model: current_user.relationships.build, local: true) do |f| %>
+        <%= form_with(model: current_user.relations.build, local: true) do |f| %>
           <div><%= hidden_field_tag :followed_id, @user.id %></div>
           <%= f.submit "Follow", class: "btn btn-primary" %>
         <% end %>
@@ -28,7 +38,7 @@
     </div>
 
     <% if @haveRoom == true %>
-      <%= link_to "DMM", room_path(@roomId) %>
+      <%= link_to "DMM", room_path(@roomId), class: "btn btn-primary" %>
     <% else %>
       <%= form_with(model: @room, url: rooms_path, local: true) do |f| %>
         <%= fields_for @entry do |e| %>

@@ -1,31 +1,22 @@
-<h1>お笑い芸人依頼サービス</h1>
+<div class="center jumbotron">
+  <h1>お笑い芸人依頼サービス</h1>
+  <p>日常に（お）笑いを</p>
+</div>
 
-<p>日常に（お）笑いを</p>
 
-<% if current_user%>
-  <%= link_to "マイページ", mypage_path(current_user) %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to "芸人ログイン", new_user_session_path %>
-  <br>
-  <%= link_to "芸人新規登録", new_user_registration_path(talent: true) %>
-  <br><br>
-  <%= link_to "ユーザーログイン", new_user_session_path %>
-  <br>
-  <%= link_to "ユーザー新規登録", new_user_registration_path %>
-<% end %>
 
 <h3>芸人一覧</h3>
+
 
 <ul>
   <% @users.first(5).each do |user| %>
     <li>
       <%= link_to gravatar_for(user),mypage_path(user) %>
-      <%= link_to user.talent_profile.name, mypage_path(user) %>
+      <%= link_to user.name, mypage_path(user) %>
       <%= user.talent_profile.history%>
       <%= user.talent_profile.belongs%>
-
     </li>
   <% end %>
 </ul>
+
 <%= link_to "もっと見る", users_path %>

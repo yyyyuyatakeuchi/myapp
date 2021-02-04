@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :authenticate_user!, only: [:update]
+  before_action :authenticate_user!, only: [:edit, :update]
 
   # GET /resource/sign_up
   def new
@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       session["devise.regist_data"][:user]["password"] = params[:user][:password]
       @user.create_talent_profile if @user.isTalent
       sign_in(:user, @user)
-      flash[:info] = 'ユーザー登録できたわ'
+      flash[:info] = 'ユーザー登録できました'
       redirect_back_or @user
     else
       @talent_signup = @user.isTalent
@@ -35,10 +35,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def redirect_back_or(user)
-    if @followed_user
+    unless @followed_user.blank?
       redirect_to mypage_path(@followed_user)
     else
-      redirect_to mypage_path("1")
+      redirect_to mypage_path(user)
     end
   end
 

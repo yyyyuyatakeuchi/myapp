@@ -1,22 +1,22 @@
 class TalentProfilesController < ApplicationController
-  before_action :authenticate_user! 
+  before_action :authenticate_user!, only:[:edit, :update]
 
   def edit
-    @profile = TalentProfile.find_by(user_id: current_user.id)
+    @user = User.find(params[:id])
   end
 
   def update
-    @profile = TalentProfile.find_by(user_id: current_user.id)
-    if @profile.update(profile_params)
-      redirect_to mypage_path(current_user.id)
+    @user = User.find(params[:id])
+    if @user.update!(user_name_params)
+      flash[:success] = "プロフィールを変更しました"
+      redirect_to mypage_path(@user)
     else
       render :edit
     end
   end
 
-  def profile_params
-    params.require(:talent_profile).permit(
-      :name, :history, :belongs, :character, :free_write
-    )
+  def user_name_params
+    params.require(:user).permit(:name, talent_profile_attributes:
+      [:history, :belongs, :character, :free_write])
   end
 end

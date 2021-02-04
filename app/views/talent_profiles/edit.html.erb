@@ -1,20 +1,23 @@
-<%= form_with(model: @profile, local: true) do |f| %>
-      <%= f.label :name, "名前" %>
-      <%= f.text_field :name, class: 'form-control' %>
+<%= form_with(model: @user, url:talent_profile_path, local: true) do |f| %>
+  <%= f.label :name, "name" %>
+  <%= f.text_field :name, class: 'form-control' %>
 
-      <%= f.label :history, "芸歴" %>
-      <%= f.text_field :history, class: 'form-control' %>
 
-      <%= f.label :belongs, "所属" %>
-      <%= f.text_field :belongs, class: 'form-control' %>
+  <%= f.fields_for(:talent_profile) do |pr| %>
 
-      <%= f.label :character, "芸風" %>
-      <%= f.text_field :character, class: 'form-control' %>
+      <%= pr.label :history, "芸歴" %>
+      <%= pr.text_field :history, class: 'form-control' %>
 
-      <%= f.label :free_write, "自由記入欄" %>
-      <%= f.text_field :free_write, class: 'form-control' %>
+      <%= pr.label :belongs, "所属" %>
+      <%= pr.text_field :belongs, class: 'form-control' %>
 
-      <%= f.submit "Create my Profile", class: "btn btn-primary" %>
+      <%= pr.label :character, "芸風" %>
+      <%= pr.text_field :character, class: 'form-control' %>
+
+      <%= pr.label :free_write, "自由記入欄" %>
+      <%= pr.text_field :free_write, class: 'form-control' %>
+
+      <%= pr.submit "Update my Profile", class: "btn btn-primary" %>
     <% end %>
-
+<% end %>
     <%= link_to "Back", :back %>
