@@ -10,7 +10,7 @@
   </aside>
 </div>
 
-<% if @user == current_user%>
+<% if @user == current_user %>
   <%= link_to "アカウント情報編集", edit_user_registration_path %>
 <% end %>
 <%= @user.isTalent if Rails.env.development? %>
@@ -20,6 +20,13 @@
 <% if @user == current_user%>
   <%= link_to "プロフィール編集", edit_talent_profile_path %>
 <% end %>
+
+<% if user_signed_in?%>
+  <% if current_user.admin?%>
+      <%= link_to "プロフィール編集", edit_talent_profile_path %>
+  <%end%>
+<%end%> 
+
 <p>芸人でごわす</p>
 
   <% if current_user && !current_user.isTalent %>
@@ -73,7 +80,7 @@
     <% @users.each do |user| %>
       <li>
         <%= link_to gravatar_for(user),mypage_path(user) %>
-        <%= link_to user.talent_profile.name, mypage_path(user) %>
+        <%= link_to user.name, mypage_path(user) %>
       </li>
     <% end %>
   <% end %>

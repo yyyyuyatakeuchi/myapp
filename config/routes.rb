@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admin/index'
   get 'rooms/index'
   get 'rooms/show'
   get 'users/index'
@@ -11,7 +12,8 @@ Rails.application.routes.draw do
   #devise_scope :users do
     #get '/users', to: redirect("/users/sign_up")
   #end
-  resources :users, only: [:index]
+  resources :users, only: [:index, :destroy]
+  resources :admin, only: [:index, :destroy]
   resources :mypage, only: [:show]
   resources :rooms, only: [:index, :create, :show]
   resources :messages, only: [:create]

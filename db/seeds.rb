@@ -5,3 +5,35 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+User.create!(name:  "竹内涼真",
+  email: "example@railstutorial.org",
+  password:              "foobar",
+  password_confirmation: "foobar",
+  address: "tokyo",
+  admin: true)
+
+
+history = Random.new(50)
+77.times do |n|
+  name  = Faker::Name.name
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  address = n % 3 == 0? "osaka" : "tokyo"
+  isTalent = n % 8 == 0? "false" : "true"
+  user = User.create!(name:  name,
+      email: email,
+      password:              password,
+      password_confirmation: password,
+      isTalent: isTalent,
+      address: address)
+  if user.isTalent
+    user.create_talent_profile(
+      history: history.rand(50),
+      belongs: "CreativeAgency",
+      character: "",
+      free_write: ""
+      ) 
+  end
+end

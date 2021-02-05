@@ -3,20 +3,14 @@
   <p>日常に（お）笑いを</p>
 </div>
 
+<% if user_signed_in?%>
+  <% if current_user.admin?%>
+      <%= link_to "管理者用ユーザー一覧へ", admin_index_path %>
+  <%end%>
+<%end%> 
 
-
-<h3>芸人一覧</h3>
-
-
-<ul>
-  <% @users.first(5).each do |user| %>
-    <li>
-      <%= link_to gravatar_for(user),mypage_path(user) %>
-      <%= link_to user.name, mypage_path(user) %>
-      <%= user.talent_profile.history%>
-      <%= user.talent_profile.belongs%>
-    </li>
-  <% end %>
+<h3>芸人｜新着順</h3>
+<ul class="users">
+  <%= render @users %>
 </ul>
-
 <%= link_to "もっと見る", users_path %>

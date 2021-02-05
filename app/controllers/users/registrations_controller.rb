@@ -5,15 +5,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :authenticate_user!, only: [:edit, :update]
 
   # GET /resource/sign_up
   def new
     @user = User.new
     @talent_signup = params[:talent]
     @followed_user = params[:followed_user]
-    #@profile = @user.build_talent_profile if @talent_signup
-    #@profile = TalentProfile.new if @talent
     super
   end  
 
