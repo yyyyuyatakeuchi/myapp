@@ -9,8 +9,20 @@
 
 /* universal */
 
+html * {
+  box-sizing: border-box;
+}
+
+div {
+  display: block;
+}
+
 body {
   padding-top: 60px;
+  line-height: 1.6;
+  font-family: ヒラギノ角ゴ Pro W3,Hiragino Kaku Gothic Pro,メイリオ,Meiryo,verdana,Osaka,ＭＳ\ Ｐゴシック,MS PGothic,Sans-Serif;
+  font-size: 1.4rem;
+  word-break: break-all;
 }
 
 section {
@@ -19,6 +31,12 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+li, ol, ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 .center {
@@ -33,6 +51,7 @@ textarea {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  margin: 0px;
 }
 
 h1 {
@@ -180,3 +199,20 @@ input {
   }
 }
 
+.button {
+  display       : inline-block;
+  border-radius : 1%;          /* 角丸       */
+  font-size     : 15pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #3f74c2;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #6666ff;    /* 枠の指定 */
+}
+.button:hover {
+  color         : #6666ff;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
+}

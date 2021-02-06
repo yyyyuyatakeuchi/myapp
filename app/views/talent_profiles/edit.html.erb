@@ -6,16 +6,16 @@
   <%= f.fields_for(:talent_profile) do |pr| %>
 
       <%= pr.label :history, "芸歴" %>
-      <%= pr.text_field :history, class: 'form-control' %>
+      <%= pr.text_field :history, class: 'form-control', placeholder: "芸歴" %>
 
       <%= pr.label :belongs, "所属" %>
-      <%= pr.text_field :belongs, class: 'form-control' %>
+      <%= pr.text_field :belongs, class: 'form-control',placeholder: "あなたの所属はどこですか" %>
 
       <%= pr.label :character, "芸風" %>
-      <%= pr.text_field :character, class: 'form-control' %>
+      <%= pr.text_area :character, class: 'form-control', size: "40x4", placeholder: "例：イカに扮する芸風です" %>
 
       <%= pr.label :free_write, "自由記入欄" %>
-      <%= pr.text_field :free_write, class: 'form-control' %>
+      <%= pr.text_area :free_write, class: 'form-control', size: "40x10", placeholder: "例：私はイカを二貫食べるという特技があります" %>
 
       <%= pr.submit "Update my Profile", class: "btn btn-primary" %>
     <% end %>

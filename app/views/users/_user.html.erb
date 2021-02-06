@@ -1,6 +1,36 @@
-<li>
-  <%= link_to gravatar_for(user),mypage_path(user) %>
-  <%= link_to user.name, mypage_path(user) %>
-  <%= user.talent_profile.history%>
-  <%= user.talent_profile.belongs%>
+<li class="talentUsers_item">
+  <article class="talentCard">
+    <header class="talentCard_header">
+      <h2 class="talentCard_name"><%= link_to user.name, mypage_path(user) %></h2>
+      <div class="talentCard_followLink">
+        <%= button_to "Follow", new_user_registration_path, class: "button follow",
+                    method: 'get', params: {followed_user: @user} %>
+      </div>  
+    </header>
+    <div class="talentCard_content">
+      <div class="talentCard_profile">
+        <figure class="talentCard_profileImage"><%= link_to gravatar_for(user),mypage_path(user) %></figure>
+          <ul>
+            <li>芸歴：<%= user.talent_profile.history%></li>
+            <li>所属事務所：<%= user.talent_profile.belongs%></li>
+            <li>活動拠点：<%= user.address%></li>
+          </ul>
+      </div>
+    </div>
+    <div class="talentCard_character">
+      <h5 class="talentCard_title">【芸風】</h5>
+      <div class="talentCard_characterContent">
+        <strong><%= truncate(user.talent_profile.character, length:70) %></strong>
+      </div>
+    </div>
+    <div class="talentCard_freeWrite">
+      <h5 class="talentCard_title">【自己紹介文】</h5>
+      <strong><%= truncate(user.talent_profile.free_write, length:150) %></strong>
+    </div>
+    <footer class="talentCard_footer">
+      <div class="talentCard_userLink">
+        <%= link_to "この芸人の詳細を見る", mypage_path(user), class: "button show" %>
+      </div>
+    </footer>
+  </article> 
 </li>

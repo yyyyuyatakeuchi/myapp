@@ -1,9 +1,11 @@
 <% provide(:title, '芸人一覧') %>
 <h1>芸人一覧</h1>
 <p>お気に入りを見つけるべし</p>
-
-<ul class="users">
+<div class="row">
+<div class="col-md-8">
+<ul class="talentUsers">
     <%= render @users %>
 </ul>
-
 <%= paginate @users%>
+</div>
+</div>

@@ -1,3 +1,99 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+/* microposts */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.talentUsers {
+  list-style: none;
+  margin: 0;
+}
+
+.talentUsers_item{
+  margin: 25px;
+}
+
+.talentCard {
+  border: 1px solid #e8e3df;
+  border-bottom: none;
+  box-shadow: 0 1px 2px rgba(0,0,0,.2);
+  padding: 10px;
+}
+
+.talentCard_header {
+  border-bottom: 1px solid #e2b727;
+  padding-bottom: .5em;
+}
+
+.talentCard_name {
+  position: relative;
+  font-size: 30px;
+  padding-left: .25em;
+  line-height: 1;
+  border-left: 3px solid #db8019;
+  display: inline-block;
+}
+
+.follow{
+  border-radius : 10%;
+  position: relative;
+  line-height: 1;
+  margin-top: 1px;
+}
+
+.talentCard_followLink{
+  float: right;
+}
+
+.talentCard_content {
+  margin-top: 10px;
+}
+
+.talentCard_profile {
+  overflow: hidden;
+}
+
+.talentCard_profileImage {
+  max-width: 150px;
+  min-width: 86px;
+}
+
+.talentCard_profileMain {
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.talentCard_history,.talentCard_belongs,.talentCard_address {
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.3rem;
+}
+
+.talentCard_address {
+  display: flex;
+  margin-top: .25em;
+}
+
+.talentCard_title{
+  margin-top: 1px;
+  margin-left: 1px;
+  margin-bottom: 5px;
+}
+
+.talentCard_character,.talentCard_freeWrite {
+  margin-top: 10px;
+  padding: 10px 10px 4px;
+  background-color: #f4f2f0;
+  border: 1px solid #ded6d1;
+}
+
+.talentCard_footer{
+  margin-top: 10px;
+}
+
+.show{
+  font-size: 10pt; 
+  background-color: #e2b727;
+}
+

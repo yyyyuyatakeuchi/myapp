@@ -2,15 +2,17 @@
   <h1>お笑い芸人依頼サービス</h1>
   <p>日常に（お）笑いを</p>
 </div>
-
 <% if user_signed_in?%>
   <% if current_user.admin?%>
       <%= link_to "管理者用ユーザー一覧へ", admin_index_path %>
   <%end%>
 <%end%> 
-
+<div class="row">
+<div class="col-md-8">
 <h3>芸人｜新着順</h3>
-<ul class="users">
+<ol class="talent_users">
   <%= render @users %>
-</ul>
+</ol>
 <%= link_to "もっと見る", users_path %>
+</div>
+</div>
