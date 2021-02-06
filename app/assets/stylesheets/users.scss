@@ -97,3 +97,21 @@
   background-color: #e2b727;
 }
 
+.talentCard_character strong{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+
+  .talentCard_freeWrite strong{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+  }
+
+  .talentCard_characterShow,.talentCard_freeWriteShow {
+    margin-top: 15px;
+    padding: 10px 10px 4px;
+  }

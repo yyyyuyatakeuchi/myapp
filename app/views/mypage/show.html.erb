@@ -1,14 +1,6 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <%= gravatar_for @user%>
-      <div class="talent">
-        <h1><%= @user.name %></h1>
-      </div>
-    </section>
-  </aside>
-</div>
+<% talentCard_character = "talentCard_characterShow" %>
+<% talentCard_freeWrite = "talentCard_freeWriteShow" %>
 
 <% if @user == current_user %>
   <%= link_to "アカウント情報編集", edit_user_registration_path %>
@@ -28,11 +20,8 @@
 <%end%> 
 
 <p>芸人でごわす</p>
-<%= @user.talent_profile.history%>
-<%= @user.talent_profile.belongs%>
-<br>
-<%= @user.talent_profile.character%>
-<%= @user.talent_profile.free_write%>
+<%= render partial: "users/profile", locals: { user: @user,
+            talentCard_character: talentCard_character, talentCard_freeWrite: talentCard_freeWrite } %>
 <p>以上</p>
 
   <% if current_user && !current_user.isTalent %>
