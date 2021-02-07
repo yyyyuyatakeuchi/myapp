@@ -1,4 +1,5 @@
 <% provide(:title, @user.name) %>
+
 <% talentCard_character = "talentCard_characterShow" %>
 <% talentCard_freeWrite = "talentCard_freeWriteShow" %>
 
@@ -8,55 +9,19 @@
 <%= @user.isTalent if Rails.env.development? %>
 
 <% if @user.isTalent %>
-
-<% if @user == current_user%>
-  <%= link_to "プロフィール編集", edit_talent_profile_path %>
-<% end %>
-
-<% if user_signed_in?%>
-  <% if current_user.admin?%>
-      <%= link_to "プロフィール編集", edit_talent_profile_path %>
-  <%end%>
-<%end%> 
-
-<p>芸人でごわす</p>
-<%= render partial: "users/profile", locals: { user: @user,
-            talentCard_character: talentCard_character, talentCard_freeWrite: talentCard_freeWrite } %>
-<p>以上</p>
-
-  <% if current_user && !current_user.isTalent %>
-    <div id="follow_form">
-      <% if current_user.following?(@user) %>
-        <%= form_with(model: current_user.relations.find_by(followed_id: @user.id),
-                      html: { method: :delete }, local: true) do |f| %>
-          <%= f.submit "Unfollow", class: "button" %>
-        <% end %>
-      <% else %>
-        <%= form_with(model: current_user.relations.build, local: true) do |f| %>
-          <div><%= hidden_field_tag :followed_id, @user.id %></div>
-          <%= f.submit "Follow", class: "button" %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <% if @haveRoom == true %>
-      <%= link_to "DMM", room_path(@roomId), class: "btn btn-primary" %>
-    <% else %>
-      <%= form_with(model: @room, url: rooms_path, local: true) do |f| %>
-        <%= fields_for @entry do |e| %>
-          <%= e.hidden_field :user_id, value: @user.id %>
-        <% end %>
-        <%= f.submit "DMC", class: "button" %>
-      <% end %>
-    <% end %> 
+  <% if @user == current_user%>
+    <%= link_to "プロフィール編集", edit_talent_profile_path %>
   <% end %>
-  
-  <% unless user_signed_in? %>
-    <%= button_to "Follow", new_user_registration_path, class: "button",
-                    method: 'get', params: {followed_user: @user} %>
-    <%= button_to "DM", new_user_registration_path, class: "button",
-                    method: 'get', params: {followed_user: @user} %>
-  <% end %>
+  <% if user_signed_in?%>
+    <% if current_user.admin?%>
+        <%= link_to "プロフィール編集", edit_talent_profile_path %>
+    <%end%>
+  <%end%> 
+  <p>芸人でごわす</p>
+  <%= render partial: "users/profile", locals: { user: @user,
+              talentCard_character: talentCard_character, talentCard_freeWrite: talentCard_freeWrite } %>
+  <p>以上</p>
+  <%= render 'dm_form' %>
 
 
 <% else %>

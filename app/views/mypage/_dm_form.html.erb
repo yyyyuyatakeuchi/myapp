@@ -1,0 +1,17 @@
+<% if current_user && !current_user.isTalent %>
+  <% if @haveRoom == true %>
+    <%= link_to "DMM", room_path(@roomId), class: "btn btn-primary" %>
+  <% else %>
+    <%= form_with(model: @room, url: rooms_path, local: true) do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+      <%= f.submit "DMC", class: "button" %>
+    <% end %>
+  <% end %> 
+<% end %>
+  
+<% unless user_signed_in? %>
+  <%= button_to "DM", new_user_registration_path, class: "button",
+                  method: 'get', params: {followed_user: @user} %>
+<% end %>
