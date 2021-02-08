@@ -5,6 +5,23 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.indexSubTitle{
+  text-align: center;
+}
+
+.search{
+  display:inline-block;
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.row{
+  display:inline-block;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .talentUsers {
   list-style: none;
   margin: 0;

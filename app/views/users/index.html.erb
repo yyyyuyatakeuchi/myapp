@@ -1,13 +1,19 @@
 <% provide(:title, '芸人一覧') %>
 
 <h1>芸人一覧</h1>
-<p>お気に入りを見つけるべし</p>
-<div class="row">
-<div class="col-md-8">
+<p class="indexSubTitle">お気に入りを見つけるべし</p>
 
-<ul class="talentUsers">
-  <%= render @users %>
-</ul>
-<%= paginate @users%>
-</div>
+<div class="row">
+  <div class="col-md-2 search">
+    <%= form_tag(search_users_path, method: "get") do %>
+      <%= select_tag(:address, options_for_select([["東京","tokyo"],["大阪","osaka"]])) %>
+      <%= submit_tag "絞り込み" %>
+    <% end %>
+  </div>
+  <div class="col-md-8">
+    <ul class="talentUsers">
+      <%= render @users %>
+    </ul>
+    <%= paginate @users%>
+  </div>
 </div>

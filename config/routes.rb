@@ -2,17 +2,20 @@ Rails.application.routes.draw do
   get 'admin/index'
   get 'rooms/index'
   get 'rooms/show'
-  get 'users/index'
   root 'static_pages#home'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
 
+  resources :users do
+      get :search, on: :collection
+  end
+
   #devise_scope :users do
     #get '/users', to: redirect("/users/sign_up")
   #end
-  resources :users, only: [:index, :destroy]
+  resources :users, only: [:index, :search]
   resources :admin, only: [:index, :destroy]
   resources :mypage, only: [:show]
   resources :rooms, only: [:index, :create, :show]
