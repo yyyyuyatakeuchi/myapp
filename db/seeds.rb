@@ -15,25 +15,57 @@ User.create!(name:  "竹内涼真",
   admin: true)
 
 
+name  = Faker::Name.name
+password = "password"
 history = Random.new(50)
+
 77.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
+  email = "talent-#{n+1}@railstutorial.org"
   address = n % 3 == 0? "osaka" : "tokyo"
-  isTalent = n % 8 == 0? "false" : "true"
+  isPublic = n % 10 == 0? "false" : "true"
   user = User.create!(name:  name,
       email: email,
       password:              password,
       password_confirmation: password,
-      isTalent: isTalent,
+      isTalent: true,
+      isPublic: isPublic,
       address: address)
-  if user.isTalent
-    user.create_talent_profile(
-      history: history.rand(50),
-      belongs: "CreativeAgency",
-      character: "",
-      free_write: ""
-      ) 
-  end
+  user.create_talent_profile(
+  history: history.rand(50),
+  belongs: "CreativeAgency",
+  character: "Hello!!Iam a Man...Perfect Human!!",
+  free_write: "こんにちは。わたしはお笑い芸人です。"
+  )
 end
+
+13.times do |n|
+  email = "pumpee-#{n+1}@railstutorial.org"
+  address = n % 3 == 0? "osaka" : "tokyo"
+  User.create!(name:  name,
+      email: email,
+      password:              password,
+      password_confirmation: password,
+      address: address)
+end
+
+talent_user = User.create!(name:  "ごりら番長",
+  email: "gorira@gorira.com",
+  password:              "gorira",
+  password_confirmation: "gorira",
+  isTalent: true,
+  isPublic: true,
+  address: "tokyo")
+talent_user.create_talent_profile(
+history: 22,
+belongs: "ザ・森東株式会社",
+character: "なかなかの腕前でイカを裁くという芸をしています。
+また、極彩色のきのこを探究していて、
+日々、好きなことをしています。
+日々是好日！！",
+free_write: "I am free man!!
+I am a man!!
+I am Gorira!!
+I am a perfect human!!!!
+OK!!Google!!!
+Have a nice day!!!"
+)

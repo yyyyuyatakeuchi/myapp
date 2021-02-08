@@ -1,8 +1,7 @@
 class MypageController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :when_could_show_mypage_only_myself
   
   def show
-    @user = User.find(params[:id])
     if @user.isTalent
       if user_signed_in?
         @currentUserEntry = Entry.where(user_id: current_user.id)
@@ -23,8 +22,22 @@ class MypageController < ApplicationController
         end
       end
     else
-      @users = @user.following.page(params[:page])
+      following_users = @user.following.page(params[:page])
+      @users = following_users.where(public: true)
     end
   end
   
+  def when_could_show_mypage_only_myself
+    @user = User.find(params[:id])
+    if @user.isTalent && !@user.isPublic
+      unless @user == current_user
+        redirect_to root_url
+      end
+    end
+    unless @user.isTalent
+      unless @user == current_user
+        redirect_to root url
+      end
+    end
+  end
 end

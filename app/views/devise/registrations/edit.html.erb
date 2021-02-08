@@ -12,7 +12,7 @@
     <% if @user.isTalent%>
       <div class="box">
         <%= f.label "一般公開する" %>
-        <%= f.check_box :public, {class: 'checkbox'}, true,false %>
+        <%= f.check_box :isPublic, {class: 'checkbox'}, true,false %>
       </div>
     <% end %>
 
