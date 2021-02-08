@@ -1,12 +1,20 @@
 <% provide(:title, "#{@user.name}｜編集") %>
 
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>編集画面 <% resource_name.to_s.humanize %></h2>
+
 <div class="gravatar_edit">
       <%= gravatar_for @user %><br><br>
       <a href="https://gravatar.com/emails" target="_blank">change</a>
     </div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
+
+    <% if @user.isTalent%>
+      <div class="box">
+        <%= f.label "一般公開する" %>
+        <%= f.check_box :public, {class: 'checkbox'}, true,false %>
+      </div>
+    <% end %>
 
     <div class="field">
       <%= f.label :name %><br />
@@ -18,7 +26,10 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-    <%= f.select :address, [["東京", "tokyo"], ["大阪","osaka"]] %>
+    <div class="field">
+      <%= f.label :address%><br />
+      <%= f.select :address, [["東京", "tokyo"], ["大阪","osaka"]],class: "col-md-3 col-md-offset-3", class: 'form-control'%>
+    </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
@@ -44,12 +55,12 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Update" %>
+    <%= f.submit "変更",class: "button edit" %>
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h4>アカウントを削除する</h4>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>unhappy？ <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当によろしいですか？" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "戻る", :back %>

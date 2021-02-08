@@ -2,7 +2,6 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   protect_from_forgery with: :exception
-
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
@@ -12,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @talent_signup = params[:talent]
     @followed_user = params[:followed_user]
     super
-  end  
+  end
 
   # POST /resource
   def create
@@ -67,12 +66,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :isTalent, :address])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :isTalent, :address, :public])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :isTalent, :address])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :isTalent, :address, :public])
   end
 
   # The path used after sign up.

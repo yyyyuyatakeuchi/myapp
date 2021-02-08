@@ -199,11 +199,34 @@ input {
   }
 }
 
-
 .moreToShow{
   font-size:20px;
   margin-top: none;
   margin-left: 25px;
+}
+
+.box{
+  margin: 18px;
+}
+
+.box label{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin:5px;
+}
+
+.checkbox{
+  -moz-transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+}
+
+.field{
+  margin:10px;
+}
+
+.edit{
+  margin: 15px 0;
 }
 
 .button {
