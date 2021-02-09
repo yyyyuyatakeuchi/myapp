@@ -10,10 +10,17 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
     <% if @user.isTalent%>
-      <div class="box">
-        <%= f.label "一般公開する" %>
-        <%= f.check_box :isPublic, {class: 'checkbox'}, true,false %>
-      </div>
+      <% unless @isPublic %>
+        <div class="box">
+          <%= f.label "一般公開する（現在非公開）" %>
+          <%= f.check_box :isPublic, {class: 'checkbox'}, true,false %>
+        </div>
+      <% else %>
+        <div class="box">
+          <%= f.label "非公開にする（現在公開中）" %>
+          <%= f.check_box :isPublic, {class: 'checkbox'}, false, true %>
+        </div>
+      <% end %>
     <% end %>
 
     <div class="field">

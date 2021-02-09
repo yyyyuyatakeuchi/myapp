@@ -2,6 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   protect_from_forgery with: :exception
+  before_action :authenticate_user!, only: [:edit, :update]
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
@@ -39,9 +40,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  #def edit
-  #  super
-  #end
+  def edit
+   super
+   @isPublic = @user.isPublic
+  end
 
   # PUT /resource
   #def update

@@ -38,6 +38,7 @@ history = Random.new(50)
   )
 end
 
+#何人かフォローさせる
 13.times do |n|
   email = "pumpee-#{n+1}@railstutorial.org"
   address = n % 3 == 0? "osaka" : "tokyo"
