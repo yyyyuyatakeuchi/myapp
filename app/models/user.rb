@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :following, through: :relations, source: :followed 
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
+  has_many :rooms, through: :entries
   #has_many :rooms, through: :entries
   # Include default devise modules. Others available are:
   has_one :talent_profile, dependent: :destroy

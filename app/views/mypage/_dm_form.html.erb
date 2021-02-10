@@ -1,5 +1,5 @@
 <% if current_user && !current_user.isTalent %>
-  <% if @haveRoom == true %>
+  <% if @haveRoom %>
     <%= link_to "DMM", room_path(@roomId), class: "btn btn-primary" %>
   <% else %>
     <%= form_with(model: @room, url: rooms_path, local: true) do |f| %>

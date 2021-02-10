@@ -23,7 +23,7 @@ class MypageController < ApplicationController
       end
     else
       following_users = @user.following.page(params[:page])
-      @users = following_users.where(public: true)
+      @users = following_users.where(isPublic: true)
     end
   end
   

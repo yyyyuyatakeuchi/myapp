@@ -1,15 +1,21 @@
 <% provide(:title, @user.name) %>
-
 <% talentCard_character = "talentCard_characterShow" %>
 <% talentCard_freeWrite = "talentCard_freeWriteShow" %>
 
 <% if @user == current_user %>
   <%= link_to "アカウント情報編集", edit_user_registration_path %>
+  <%= link_to "DM一覧ページ", rooms_path %>
 <% end %>
 <%= @user.isTalent if Rails.env.development? %>
 
 <% if @user.isTalent %>
   <% if @user == current_user%>
+  <% if @user.isPublic %>
+    <h3><%= link_to "一般公開中", edit_user_registration_path %></h3>
+  <% end %>
+  <% unless @user.isPublic %>
+    <h3><%= link_to "現在非公開", edit_user_registration_path %></h3>
+  <% end %>
     <%= link_to "プロフィール編集", edit_talent_profile_path %>
   <% end %>
   <% if user_signed_in?%>
