@@ -1,32 +1,36 @@
+<h2 class="rooms-title">ダイレクトメッセージ</h2>
+<h2><%= link_to opponent_user(@room).name, mypage_path(opponent_user(@room)) %></h2>
 <div class="left-button">
-  <%= link_to "ユーザー一覧に戻る", users_path,class:"edit-link" %>
+  <%= link_to "DM一覧へ", rooms_path(current_user),class:"edit-link" %>
 </div>
-<h4 class="rooms-title">気になる同士</h4>
-<% @entries.each do |e| %>
-  <div class="user-name">
-  <strong>
-      <a class="rooms-user-link" href="/users/<%= e.user.id %>">
-          <%= e.user.name %>さん
-      </a>
-  </strong>
-  </div>
-<% end %>
 <hr>
 <div class="chats">
+
   <div class="chat">
     <% if @messages.present? %>
       <% @messages.each do |m| %>
-        <div class="chat-box">
-          <div class="chat-hukidashi"> <strong><%= m.body %></strong> <br>
-            <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
+
+        <% if m.user_id == current_user.id %>
+          <div class="current_user">
+            <small class="current_user">[<%= m.user.name %>さん</small>
+            <small class="current_user"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%>]</small><br>
+            <strong class="current_user"><%= safe_join(m.body.split("\n"),tag(:br)) %></strong>
           </div>
-        </div>
+        <% else %>
+          <div class="visited_user">
+            <small class="visited_user">[<%= m.user.name %>さん</small>
+            <small class="visited_user"><%= m.created_at.strftime("%Y-%m-%d %H:%M")%>]</small><br>
+            <strong class="visited_user"><%= m.body %></strong>
+          </div>
+        <% end %>
+
       <% end %>
     <% end %>
   </div>
+
   <div class="posts">
-    <%= form_for @message do |f| %>
-      <%= f.text_field :body, placeholder: "メッセージを入力して下さい" , size: 70, class:"form-text-field" %>
+    <%= form_with(model: @message, local: true) do |f| %>
+      <%= f.text_area :body, placeholder: "メッセージを入力して下さい" , class:'form-control post' %>
         <%= f.hidden_field :room_id, value: @room.id %>
           <%= f.submit "投稿",class: 'form-submit'%>
     <% end %>

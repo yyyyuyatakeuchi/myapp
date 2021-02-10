@@ -3,15 +3,15 @@ module RoomsHelper
     message = room.messages.order(updated_at: :desc).limit(1)
     message = message[0]
     if message.present?
-      tag.p "#{message.body}", class: "dm_list__content__link__box__message"
+      tag.p "#{message.body}", class: "dm_list_content_link_box_message"
     else
-      tag.p "[ まだメッセージはありません ]", class: "dm_list__content__link__box__message"
+      tag.p "[ まだメッセージはありません ]", class: "dm_list_content_link_box_message"
     end
   end
 
   def opponent_user(room)
     entry = room.entries.where.not(user_id: current_user)
-    name = entry[0].user.name
-    tag.p "#{name}", class: "dm_list__content__link__box__name"
+    @user = entry[0].user
+    return @user
   end
 end

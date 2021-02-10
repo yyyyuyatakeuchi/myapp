@@ -39,7 +39,7 @@
 }
 
 .talentCard_header {
-  border-bottom: 1px solid #e2b727;
+  border-bottom: 1px solid #dfc36a;
   padding-bottom: .5em;
 }
 
@@ -48,7 +48,7 @@
   font-size: 30px;
   padding-left: .25em;
   line-height: 1;
-  border-left: 3px solid #db8019;
+  border-left: 3px solid #e9a456;
   display: inline-block;
 }
 
@@ -111,7 +111,11 @@
 
 .show{
   font-size: 10pt; 
-  background-color: #e2b727;
+  background-color: #e9d38d;
+}
+
+.show:hover {
+  background    : #f3ecd4;
 }
 
 .talentCard_character strong{
