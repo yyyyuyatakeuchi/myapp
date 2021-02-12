@@ -1,4 +1,6 @@
 <% @user = user %>
+<% show = show %>
+<% @schedules = Schedule.where(user_id: @user.id) %>
 
 <header class="talentCard_header">
   <h2 class="talentCard_name"><%= link_to user.name, mypage_path(user) %></h2>
@@ -16,6 +18,18 @@
       </ul>
   </div>
 </div>
+
+<% if show %>
+  <%= render 'mypage/dm_form' %>
+  <%= month_calendar events: @schedules do |date, schedules| %>
+    <%= render partial: 'users/calendar', locals: { schedules: schedules, date: date} %>
+    <% end %>
+<% else %>
+  <%= week_calendar(number_of_weeks: 2, events: @schedules)  do |date, schedules| %>
+    <%= render partial: 'users/calendar', locals: { schedules: schedules, date: date} %>
+  <% end %>
+<% end %>
+
 <div class=<%= talentCard_character %>>
   <h5 class="talentCard_title">【芸風】</h5>
   <strong><%= safe_join(user.talent_profile.character.split("\n"),tag(:br)) %></strong>

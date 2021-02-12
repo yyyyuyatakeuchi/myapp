@@ -229,9 +229,41 @@ input {
   margin: 15px 0;
 }
 
+.ava_content{
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 0;
+  font-size: 20px;
+}
+
+.green{
+  color: rgb(57, 189, 68);
+}
+
+.yellow{
+  color: rgb(224, 120, 35);
+}
+
+.calendar_day{
+  border-bottom: 1px solid #afafac;
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.calendar_editLink{
+  float: right;
+  display:inline; 
+}
+
+.DMC{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius : 22%;
+}
+
 .button {
   display       : inline-block;
-  border-radius : 1%;
+  border-radius : 2%;
   font-size     : 15pt;
   text-align    : center;
   cursor        : pointer;

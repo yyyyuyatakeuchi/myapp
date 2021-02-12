@@ -25,7 +25,7 @@
     <%end%>
   <%end%> 
   <p>芸人でごわす</p>
-  <%= render partial: "users/profile", locals: { user: @user,
+  <%= render partial: "users/profile", locals: { user: @user, show: 'show',
               talentCard_character: talentCard_character, talentCard_freeWrite: talentCard_freeWrite } %>
   <p>以上</p>
   <%= render 'dm_form' %>
@@ -44,29 +44,3 @@
   <%= paginate @users%>
 <% end %>
 
-
-<h1>鬼になる</h1>
-
-<%= month_calendar events: @schedules do |date, schedules| %>
-  <%= date.day %>
-  <% if @user == current_user %>
-    <%= link_to "編集", new_schedule_path(inDate: date)  %>
-  <% end %>
-  <% schedules.each do |schedule| %>
-      <div>
-        <%= schedule.availability %>
-      </div>
-  <% end %>
-<% end %>
-
-<%= week_calendar(number_of_weeks: 2, events: @schedules)  do |date, schedules| %>
-  <%= date.day %>
-  <% if @user == current_user %>
-    <%= link_to "編集", new_schedule_path(inDate: date)  %>
-  <% end %>
-  <% schedules.each do |schedule| %>
-      <div>
-        <%= schedule.availability %>
-      </div>
-  <% end %>
-<% end %>
