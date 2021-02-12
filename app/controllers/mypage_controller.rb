@@ -3,6 +3,8 @@ class MypageController < ApplicationController
   
   def show
     if @user.isTalent
+      @all = Schedule.all
+      @schedules = Schedule.where(user_id: @user.id)
       if user_signed_in?
         @currentUserEntry = Entry.where(user_id: current_user.id)
         @userEntry = Entry.where(user_id: @user.id)

@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :search]
   resources :admin, only: [:index, :destroy]
   resources :mypage, only: [:show]
+  resources :schedules, only: [:new, :create, :edit, :update]
   resources :rooms, only: [:index, :create, :show]
   resources :messages, only: [:create]
   resources :relations, only: [:create, :destroy]

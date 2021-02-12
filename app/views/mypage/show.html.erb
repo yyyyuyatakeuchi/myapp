@@ -5,6 +5,7 @@
 <% if @user == current_user %>
   <%= link_to "アカウント情報編集", edit_user_registration_path %>
   <%= link_to "DM一覧ページ", rooms_path %>
+  <%= link_to "Calender", new_schedule_path %>
 <% end %>
 <%= @user.isTalent if Rails.env.development? %>
 
@@ -41,4 +42,31 @@
     <% end %>
   <% end %>
   <%= paginate @users%>
+<% end %>
+
+
+<h1>鬼になる</h1>
+
+<%= month_calendar events: @schedules do |date, schedules| %>
+  <%= date.day %>
+  <% if @user == current_user %>
+    <%= link_to "編集", new_schedule_path(inDate: date)  %>
+  <% end %>
+  <% schedules.each do |schedule| %>
+      <div>
+        <%= schedule.availability %>
+      </div>
+  <% end %>
+<% end %>
+
+<%= week_calendar(number_of_weeks: 2, events: @schedules)  do |date, schedules| %>
+  <%= date.day %>
+  <% if @user == current_user %>
+    <%= link_to "編集", new_schedule_path(inDate: date)  %>
+  <% end %>
+  <% schedules.each do |schedule| %>
+      <div>
+        <%= schedule.availability %>
+      </div>
+  <% end %>
 <% end %>

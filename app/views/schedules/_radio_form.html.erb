@@ -1,0 +1,21 @@
+<div class="radio_ava">
+    <div class="box">
+      <%= form.label "◯（空いています）" %>
+      <%= form.radio_button :availability, :◯, checked: "checked" %>
+    </div>
+    <div class="box">
+      <%= form.label "△（調整可能です）" %>
+      <%= form.radio_button :availability, :△, checked: "checked" %>
+    <div class="box">
+      <%= form.label "×（厳しいです）" %>
+      <%= form.radio_button :availability, :×, checked: "checked" %>
+    </div>
+    <div class="box">
+      <%= form.label "ー（あとで編集）" %>
+      <%= form.radio_button :availability, :ー, checked: "checked" %>
+    </div>
+  </div>
+
+  <div class="submit">
+    <%= form.submit %>
+  </div>

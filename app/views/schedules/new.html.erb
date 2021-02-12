@@ -1,0 +1,6 @@
+<%= form_with(model: @schedule, local: true) do |form| %>
+  <%= form.hidden_field :start_time, :value => "#{@inDate} 00:00:00" %>
+  <%= form.hidden_field :inDate, :value => @inDate%>
+
+  <%= render partial: "radio_form", locals: { form: form} %>
+<% end %>
