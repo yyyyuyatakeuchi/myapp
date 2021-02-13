@@ -69,6 +69,7 @@
 
 .talentCard_profile {
   overflow: hidden;
+  margin-bottom: 7px;
 }
 
 .talentCard_profileImage {
@@ -103,6 +104,12 @@
   padding: 10px 10px 4px;
   background-color: #f4f2f0;
   border: 1px solid #ded6d1;
+}
+
+.talentCard_characterShow,.talentCard_freeWriteShow {
+  margin-top: 10px;
+  padding: 10px 10px 4px;
+  border-top: 1px solid #ded6d1;
 }
 
 .talentCard_footer{

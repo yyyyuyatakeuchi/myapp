@@ -1,12 +1,19 @@
 <% provide(:title, '芸人一覧') %>
 
+<% select_days = [["未選択","未選択"]] %>
+<% today = Date.today %>
+<% 30.times do |d| %>
+  <% select_days << [(today+d).strftime("%m月%d日"),(today+d).strftime("%Y-%m-%d")] %>
+<% end %>
+
 <h1>芸人一覧</h1>
 <p class="indexSubTitle">お気に入りを見つけるべし</p>
 
 <div class="row">
   <div class="col-md-2 search">
     <%= form_tag(search_users_path, method: "get") do %>
-      <%= select_tag(:address, options_for_select([["東京","tokyo"],["大阪","osaka"]])) %>
+      <%= select_tag(:address, options_for_select([["未選択","未選択"],["東京","tokyo"],["大阪","osaka"]], {selected: @address})) %>
+      <%= select_tag(:inDate, options_for_select(select_days, {selected: @selectDay})) %>
       <%= submit_tag "絞り込み" %>
     <% end %>
   </div>
