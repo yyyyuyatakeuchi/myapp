@@ -15,11 +15,14 @@ User.create!(name:  "竹内涼真",
   admin: true)
 
 
-name  = Faker::Name.name
+
 password = "password"
 history = Random.new(50)
+randomAva = Random.new(4)
+today = Date.today
 
 77.times do |n|
+  name = Faker::Name.name
   email = "talent-#{n+1}@railstutorial.org"
   address = n % 3 == 0? "osaka" : "tokyo"
   isPublic = n % 10 == 0? "false" : "true"
@@ -36,6 +39,13 @@ history = Random.new(50)
   character: "Hello!!Iam a Man...Perfect Human!!",
   free_write: "こんにちは。わたしはお笑い芸人です。"
   )
+  30.times do |d|
+    user.schedules.create(
+    start_time: today+d,
+    inDate: (today+d).strftime("%Y-%m-%d"),
+    availability: randomAva.rand(4)
+    )
+  end
 end
 
 #何人かフォローさせる
@@ -48,6 +58,7 @@ end
       password_confirmation: password,
       address: address)
 end
+
 
 talent_user = User.create!(name:  "ごりら番長",
   email: "gorira@gorira.com",
@@ -68,5 +79,11 @@ I am a man!!
 I am Gorira!!
 I am a perfect human!!!!
 OK!!Google!!!
-Have a nice day!!!"
-)
+Have a nice day!!!")
+30.times do |d|
+  talent_user.schedules.create(
+  start_time: today+d,
+  inDate: (today+d).strftime("%Y-%m-%d"),
+  availability: randomAva.rand(4)
+  )
+end
