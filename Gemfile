@@ -21,17 +21,16 @@ gem 'kaminari'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
-  gem 'rubocop'
+  gem "factory_bot_rails"
   gem 'rubocop-rails'
 end
 
 group :development do
-  gem 'rubocop'
-  gem 'rubocop-rails'
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem 'spring-commands-rspec'
 end
 
 group :test do

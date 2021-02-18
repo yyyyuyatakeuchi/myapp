@@ -48,7 +48,7 @@ today = Date.today
   end
 end
 
-#何人かフォローさせる
+#何人かDMさせる
 13.times do |n|
   email = "pumpee-#{n+1}@railstutorial.org"
   address = n % 3 == 0? "osaka" : "tokyo"
