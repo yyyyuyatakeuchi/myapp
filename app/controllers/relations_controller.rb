@@ -4,7 +4,7 @@ class RelationsController < ApplicationController
   def create
     @user = User.find(params[:followed_id])
     redirect_to root_url unless @user.isPublic
-    current_user.follow(@user)
+    current_user.follow(@user) unless current_user.isTalent
     respond_to do |format|
       format.html { redirect_back(fallback_location: root_path) }
       format.js
