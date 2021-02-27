@@ -48,6 +48,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #  super
   #end
 
+  def after_update_path_for(resource)
+    mypage_path(resource)
+  end
+
   # DELETE /resource
   # def destroy
   #   super
