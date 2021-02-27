@@ -1,6 +1,5 @@
 class SchedulesController < ApplicationController
   before_action :authenticate_user!, only:[:edit, :update]
-  before_action :correct_user, only:[:edit, :update]
 
   def new
     if schedule = Schedule.find_by(inDate: params[:inDate], user_id: current_user.id)
