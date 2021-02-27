@@ -6,6 +6,6 @@ FactoryBot.define do
     isPublic {false}
     admin    {false}
     sequence(:email) { |n| "tester#{n}@example.com" }
-    password { "dottle-nouveau-pavilion-tights-furze" }
+    password { "password" }
   end
 end

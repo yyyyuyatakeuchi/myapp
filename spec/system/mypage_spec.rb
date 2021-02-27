@@ -16,18 +16,6 @@ RSpec.describe "Mypage", type: :system do
     expect(page).to have_link("DM一覧ページ")
   end
 
-  scenario "一般ユーザーマイページ、アカウント情報編集" do
-    sign_in @user
-    visit mypage_path(@user)
-    click_link "アカウント情報編集"
-    expect(page).to have_content("Name")
-    expect(page).to have_content("Email")
-    expect(page).to have_content("Address")
-    expect(page).to have_content("Password")
-    expect(page).to have_content("Password confirmation")
-    expect(page).to have_content("Current password")
-  end
-
   scenario "芸人マイページ" do
     sign_in @talent_user
     visit mypage_path(@talent_user)
@@ -38,20 +26,6 @@ RSpec.describe "Mypage", type: :system do
     expect(page).to have_link("プロフィール編集")
     expect(page).to have_content("ピン芸人")
     expect(page).to have_content("よろしく")
-  end
-
-  scenario "芸人マイページ、アカウント情報編集" do
-    sign_in @talent_user
-    visit mypage_path(@talent_user)
-    click_link "アカウント情報編集"
-    expect(page).to have_content("Name")
-    expect(page).to have_content("Email")
-    expect(page).to have_content("Address")
-    expect(page).to have_content("Password")
-    expect(page).to have_content("Password confirmation")
-    expect(page).to have_content("Current password")
-    expect(page).to have_content("一般公開する")
-    expect(page).to have_content("非公開にする")
   end
 end
 
