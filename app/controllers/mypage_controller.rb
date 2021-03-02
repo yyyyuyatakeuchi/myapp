@@ -37,7 +37,7 @@ class MypageController < ApplicationController
     end
     unless @user.isTalent
       unless @user == current_user
-        redirect_to root url
+        redirect_to root_url
       end
     end
   end
