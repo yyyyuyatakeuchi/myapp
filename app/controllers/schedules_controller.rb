@@ -2,8 +2,8 @@ class SchedulesController < ApplicationController
   before_action :authenticate_user!, only:[:edit, :update]
 
   def new
-    if schedule = Schedule.find_by(inDate: params[:inDate], user_id: current_user.id)
-      redirect_to edit_schedule_path(schedule) 
+    if @schedule = Schedule.find_by(inDate: params[:inDate], user_id: current_user.id)
+      @inDate = @schedule.inDate
     else
       @schedule = current_user.schedules.build
       @inDate = params[:inDate]
@@ -15,9 +15,9 @@ class SchedulesController < ApplicationController
     redirect_to mypage_path(current_user)
   end
 
-  def edit
-    @schedule = Schedule.find(params[:id])
-  end
+  #def edit
+    #@schedule = Schedule.find(params[:id])
+  #end
 
   def update
     @schedule = Schedule.find(params[:id])
