@@ -11,8 +11,11 @@ class SchedulesController < ApplicationController
   end
 
   def create
-    current_user.schedules.create(schedule_parameter)
-    redirect_to mypage_path(current_user)
+    @schedule = current_user.schedules.create(schedule_parameter)
+    respond_to do |format|
+      format.html {redirect_to mypage_path(current_user)}
+      format.js
+    end
   end
 
   #def edit
@@ -21,10 +24,12 @@ class SchedulesController < ApplicationController
 
   def update
     @schedule = Schedule.find(params[:id])
-    if @schedule.update!(edit_schedule_parameter)
-      redirect_to mypage_path(current_user), notice: "編集しました"
-    else
-      render 'edit'
+    @schedule.update!(edit_schedule_parameter)
+    @user = current_user#User.find(params[:id])
+    @schedules = Schedule.where(user_id: @user.id)
+    respond_to do |format|
+      format.html {redirect_to mypage_path(current_user)}
+      format.js
     end
   end
 

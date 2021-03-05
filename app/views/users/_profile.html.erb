@@ -21,13 +21,11 @@
 
 <% if show %>
   <%= render 'mypage/dm_form' %>
-  <%= month_calendar events: @schedules do |date, schedules| %>
-    <%= render partial: 'users/calendar', locals: { schedules: schedules, date: date} %>
-    <% end %>
+  <div id="<%=@user.id%>_calender">
+    <%= render partial: 'users/month_calender', locals: { schedules: @schedules} %> 
+  </div>
 <% else %>
-  <%= week_calendar(number_of_weeks: 2, events: @schedules)  do |date, schedules| %>
-    <%= render partial: 'users/calendar', locals: { schedules: schedules, date: date} %>
-  <% end %>
+  <%= render partial: 'users/two_weeks_calender', locals: {schedules: @schedules} %>
 <% end %>
 
 <div class=<%= talentCard_character %>>
