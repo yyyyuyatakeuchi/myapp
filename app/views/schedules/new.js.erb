@@ -1,2 +1,5 @@
 $('#user-modal').html("<%= j render 'schedules/scheform' %>");
 $('#user-modal').modal('show');
+$('#radio_btn').click(function(){
+  $('#user-modal').modal('hide');
+});
