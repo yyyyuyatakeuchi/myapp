@@ -11,14 +11,14 @@ RSpec.describe "Following", type: :system do
   scenario "一般ユーザーマイページ" do
     sign_in @user
     visit root_path
-    #expect(page).to have_link "フォローする"
+    expect(page).to have_button "フォローする"
     expect(page).to have_link("#{@talent_user.name}")
     expect(page).to_not have_link("#{@user.name}")
     expect(page).to have_link("芸人一覧へ")
     
     click_on "フォローする"
     #visit current_path
-    #expect(page).to_not have_link "フォローする"
+    expect(page).to have_button "フォロー解除"
     visit mypage_path(@user)
     expect(page).to have_link("#{@talent_user.name}") 
   end

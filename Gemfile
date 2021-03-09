@@ -4,6 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 gem 'rails', '~> 6.1.1'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'config'
+gem 'omniauth', '1.9.1'
+gem 'omniauth-twitter'
 gem 'simple_calendar', '~> 2.4'
 gem 'devise'
 gem "jquery-rails"
