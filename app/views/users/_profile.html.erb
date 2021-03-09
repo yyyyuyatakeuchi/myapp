@@ -10,12 +10,13 @@
     <%= link_to gravatar_for(user,size: 100),mypage_path(user) %>
     <div class="talentCard_followLink">
     <%= render partial: 'users/follow_form', locals: { user: @user} %>
-  </div> 
-      <ul>
-        <li>芸歴：<%= user.talent_profile.history%></li>
-        <li>所属事務所：<%= user.talent_profile.belongs%></li>
-        <li>活動拠点：<%= user.address%></li>
-      </ul>
+  </div>
+  <br> 
+    <ul>
+      <li>芸歴：<%= user.talent_profile.history%></li>
+      <li>所属事務所：<%= user.talent_profile.belongs%></li>
+      <li>活動拠点：<%= user.address%></li>
+    </ul>
   </div>
 </div>
 
