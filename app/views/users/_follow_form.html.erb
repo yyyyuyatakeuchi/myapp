@@ -11,7 +11,7 @@
 <% end %>
   
 <% unless user_signed_in? %>
-  <%= button_to "フォローする", new_user_registration_path, class: "button",
+  <%= button_to "フォローする", new_user_registration_path, class: "button follow_button",
                   method: 'get', params: {followed_user: @user} %>
 <% end %>
 
