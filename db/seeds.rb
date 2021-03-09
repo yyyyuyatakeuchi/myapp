@@ -11,6 +11,7 @@ User.create!(name:  "竹内涼真",
   email: "example@railstutorial.org",
   password:              "foobar",
   password_confirmation: "foobar",
+  confirmed_at: Time.now,
   address: "tokyo",
   admin: true)
 
@@ -30,6 +31,7 @@ today = Date.today
       email: email,
       password:              password,
       password_confirmation: password,
+      confirmed_at: Time.now,
       isTalent: true,
       isPublic: isPublic,
       address: address)
@@ -57,14 +59,16 @@ end
       email: email,
       password:              password,
       password_confirmation: password,
+      confirmed_at: Time.now,
       address: address)
 end
 
 
-talent_user = User.create!(name:  "ごりら番長",
+talent_user = User.create!(name:  "ごりら番長シンプル１２３４５６７８９１０１１１２１３１４１５１６１７１８１９２０＿４５文字くん",
   email: "gorira@gorira.com",
   password:              "gorira",
   password_confirmation: "gorira",
+  confirmed_at: Time.now,
   isTalent: true,
   isPublic: true,
   address: "tokyo")

@@ -4,13 +4,13 @@
 
 <header class="talentCard_header">
   <h2 class="talentCard_name"><%= link_to user.name, mypage_path(user) %></h2>
-  <div class="talentCard_followLink">
-    <%= render partial: 'users/follow_form', locals: { user: @user} %>
-  </div>  
 </header>
 <div class="talentCard_content">
   <div class="talentCard_profile">
     <%= link_to gravatar_for(user,size: 100),mypage_path(user) %>
+    <div class="talentCard_followLink">
+    <%= render partial: 'users/follow_form', locals: { user: @user} %>
+  </div> 
       <ul>
         <li>芸歴：<%= user.talent_profile.history%></li>
         <li>所属事務所：<%= user.talent_profile.belongs%></li>
