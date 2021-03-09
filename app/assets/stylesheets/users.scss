@@ -54,6 +54,11 @@
   display: inline-block;
 }
 
+.talentCard_sub{
+  display: inline-block;
+  width: 100%;
+}
+
 .follow{
   border-radius : 10%;
   position: relative;
@@ -62,6 +67,7 @@
 }
 
 .talentCard_followLink{
+  margin-bottom: 1px;
   float: right;
 }
 

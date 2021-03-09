@@ -7,11 +7,12 @@
 </header>
 <div class="talentCard_content">
   <div class="talentCard_profile">
-    <%= link_to gravatar_for(user,size: 100),mypage_path(user) %>
-    <div class="talentCard_followLink">
-    <%= render partial: 'users/follow_form', locals: { user: @user} %>
-  </div>
-  <br> 
+    <div class="talentCard_sub">
+      <%= link_to gravatar_for(user,size: 100),mypage_path(user) %>
+      <div class="talentCard_followLink">
+        <%= render partial: 'users/follow_form', locals: { user: @user} %>
+      </div>
+    </div>
     <ul>
       <li>芸歴：<%= user.talent_profile.history%></li>
       <li>所属事務所：<%= user.talent_profile.belongs%></li>

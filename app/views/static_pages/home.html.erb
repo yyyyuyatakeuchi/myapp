@@ -1,6 +1,6 @@
 <% provide(:title, "ホーム") %>
 <div class="center jumbotron">
-  <div id="app"><h1>{{message}}</h1></div>
+  <h1>"お笑い芸人依頼サービス"</h1>
   <p>日常に（お）笑いを</p>
 </div>
 <% if user_signed_in?%>
@@ -8,22 +8,10 @@
       <%= link_to "管理者用ユーザー一覧へ", admin_index_path %>
   <%end%>
 <%end%> 
-<div class="shutty" >
-  
-    <h3>芸人｜新着順</h3>
-    <ol class="talent_users">
-      <%= render @users %>
-      <%= link_to "芸人一覧へ", users_path, class: "moreToShow" %>
-    </ol>
-  
+<div class="home_contents" >
+  <h3>芸人｜新着順</h3>
+  <ol class="talent_users">
+    <%= render @users %>
+    <%= link_to "芸人一覧へ", users_path, class: "moreToShow" %>
+  </ol>
 </div>
-
-
-      <script>
-        new Vue({
-          el: "#app",
-          data: {
-            message: "お笑い芸人依頼サービス",
-          }
-          })
-      </script>
