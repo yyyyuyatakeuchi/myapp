@@ -1,26 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Relation, type: :model do
-  describe "follow a user" do
-    before do
-      user = FactoryBot.create(:user)
-      other_user = FactoryBot.create(:user)
-      @relation = Relation.new(follower_id: user.id,
-                          followed_id: other_user.id)
+  describe "Relationのバリデーション" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:talent_user) { FactoryBot.create(:talent_user) }
+    let(:relation) { Relation.new(follower_id: user.id,
+                        followed_id: talent_user.id)}
+
+    it "follower_id,followed_id共に有効な値が入っている場合は有効" do
+      expect(relation).to be_valid
     end
 
-    it "is valid with a user" do
-      expect(@relation).to be_valid
+    it "follower_idが空の場合無効" do
+      relation.follower_id = nil
+      expect(relation).to_not be_valid
     end
 
-    it "is invalid without follower_id" do
-      @relation.follower_id = nil
-      expect(@relation).to_not be_valid
-    end
-
-    it "is invalid without followed_id" do
-      @relation.followed_id = nil
-      expect(@relation).to_not be_valid
+    it "followed_idが空の場合無効" do
+      relation.followed_id = nil
+      expect(relation).to_not be_valid
     end
   end
 end

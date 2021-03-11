@@ -2,25 +2,23 @@ require 'rails_helper'
 
 RSpec.describe TalentProfile, type: :model do
 
-  describe "talent_profile with a user" do
-    before do
-      user = FactoryBot.create(:user)
-      @talent_profile = user.create_talent_profile
+  describe "user(芸人)と紐づくtalent_profile" do 
+    let(:talent_user) { FactoryBot.create(:talent_user) }
+    let(:talent_profile) { talent_user.create_talent_profile }
+
+    it "user（芸人）に紐づけられたtalent_profileが有効なこと" do
+      expect(talent_profile).to be_valid
     end
 
-    it "is valid with a user" do
-      expect(@talent_profile).to be_valid
-    end
-
-    it "is invalid with a user twice" do
-      talent_profile2 = TalentProfile.new(user_id: @talent_profile.user_id)
+    it "user(芸人)に紐づくtalent_profileは一つのみ" do
+      talent_profile2 = TalentProfile.new(user_id: talent_profile.user_id)
       expect(talent_profile2).to_not be_valid
     end
   end
 
-  it "is invalid without a user, talent_profile" do
-    talent_profile = TalentProfile.new
-    expect(talent_profile).to_not be_valid
+  it "talent_profileはuser(芸人)と紐づいていない場合は無効" do
+    new_talent_profile = TalentProfile.new
+    expect(new_talent_profile).to_not be_valid
   end
 end
 

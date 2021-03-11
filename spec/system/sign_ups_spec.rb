@@ -4,7 +4,7 @@ RSpec.describe "Sign up", type: :system do
   
   scenario "一般ユーザーとして新規登録" do
     visit root_path
-    click_link "ユーザー新規登録"
+    click_link "新規登録"
 
     expect{
       fill_in "Name", with: "name"
@@ -18,7 +18,7 @@ RSpec.describe "Sign up", type: :system do
 
   scenario "芸人として新規登録" do
     visit root_path
-    click_link "芸人新規登録"
+    click_link "芸人の方はこちら"
 
     expect{
       fill_in "Name", with: "Talent_user"

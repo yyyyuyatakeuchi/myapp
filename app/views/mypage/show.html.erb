@@ -11,6 +11,7 @@
     <% unless @user.isPublic %>
       <h2><%= link_to "現在非公開", edit_user_registration_path %></h2>
     <% end %>
+      <h4><%= link_to "【DM一覧ページへ】", rooms_path %></h4>
       <h4><%= link_to "【プロフィール編集】", edit_talent_profile_path %></h4>
   <% end %>
   <% if user_signed_in?%>
