@@ -55,9 +55,9 @@ Devise.setup do |config|
   # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
 
-  #config.omniauth :twitter,
-  #                Settings.twitter.twitter_api_key,
-  #                Settings.twitter.twitter_api_secret
+  config.omniauth :twitter,
+                  Settings.twitter.twitter_api_key,
+                  Settings.twitter.twitter_api_secret
   
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
