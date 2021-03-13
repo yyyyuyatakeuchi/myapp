@@ -3,6 +3,7 @@
   <div class="home_title"><h1>"お笑い芸人依頼サービス"</h1></div>
   <p>日常に（お）笑いを</p>
 </div>
+<%= render "static_pages/guest_login" %>
 <% if user_signed_in?%>
   <% if current_user.admin?%>
       <%= link_to "管理者用ユーザー一覧へ", admin_index_path %>

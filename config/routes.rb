@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'admin/index'
   get 'rooms/index'
   get 'rooms/show'
+  post '/static_pages/guest_sign_in', to: 'static_pages#new_guest'
   root 'static_pages#home'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
