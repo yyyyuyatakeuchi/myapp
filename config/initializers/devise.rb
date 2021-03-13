@@ -25,7 +25,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
-
+  #config.mailer_sender = Settings.mailer[:smtp_user_name]
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
@@ -54,11 +54,9 @@ Devise.setup do |config|
   # if you set :request_keys to [:subdomain], :subdomain will be used on authentication.
   # The same considerations mentioned for authentication_keys also apply to request_keys.
   # config.request_keys = []
-
   config.omniauth :twitter,
-                  Settings.twitter.twitter_api_key,
-                  Settings.twitter.twitter_api_secret
-  
+                  Settings.twitter[:twitter_api_key],
+                  Settings.twitter[:twitter_api_secret]
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.

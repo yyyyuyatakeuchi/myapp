@@ -8,12 +8,14 @@ RSpec.describe "Sign up", type: :system do
 
     expect{
       fill_in "Name", with: "name"
-      fill_in "Email", with: "test@example.com"
-      fill_in "Password", with: "test123"
-      fill_in "Password confirmation", with: "test123"
+      fill_in "Eメール", with: "test@example.com"
+      fill_in "パスワード", with: "test123"
+      fill_in "パスワード（確認用）", with: "test123"
       select '東京', from: 'user_address'
       click_button "Sign up"
     }.to change(User, :count).by(1)
+
+    expect(current_path).to eq root_path
   end
 
   scenario "芸人として新規登録" do
@@ -22,15 +24,15 @@ RSpec.describe "Sign up", type: :system do
 
     expect{
       fill_in "Name", with: "Talent_user"
-      fill_in "Email", with: "test@example.com"
-      fill_in "Password", with: "test123"
-      fill_in "Password confirmation", with: "test123"
+      fill_in "Eメール", with: "test@example.com"
+      fill_in "パスワード", with: "test123"
+      fill_in "パスワード（確認用）", with: "test123"
       select '東京', from: 'user_address'
       check 'user_isPublic'
       click_button "Sign up"
     }.to change(User, :count).by(1)
 
-    visit root_path
+    expect(current_path).to eq mypage_path(current_user)
     expect(page).to have_link("Talent_user")
   end
 end
