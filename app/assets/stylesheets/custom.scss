@@ -279,7 +279,29 @@ input {
   background    : #d4def3;
 }
 
-@media(min-width:768px){
+.guestLogin{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid #949390;
+  border-bottom: 1px solid #949390;
+  padding-bottom: 1em;
+}
+
+.guest_user{
+  width: 60%;
+  height: 45px !important;
+  margin:10px;
+  font-size: 130px;
+}
+
+@media(max-width:608px){
+  .guest_user{
+   width:80%;
+  }
+ }
+
+@media(min-width:968px){
  .home_contents{
   margin-left:16%;
   margin-right: 16%;

@@ -1,0 +1,5 @@
+<div class="guestLogin">
+  <h3>ゲスト用ログインはこちら</h3>
+  <%= button_to 'ゲストログイン（一般ユーザー）', static_pages_guest_sign_in_path, class: "btn btn-primary guest_user", method: :post %>
+  <%= button_to 'ゲストログイン（芸人）', static_pages_guest_sign_in_path(talent: true), class: "btn btn-primary guest_user", method: :post %>
+</div>
