@@ -12,6 +12,8 @@ class SchedulesController < ApplicationController
 
   def create
     @schedule = current_user.schedules.create(schedule_parameter)
+    @user = current_user
+    @schedules = Schedule.where(user_id: @user.id)
     respond_to do |format|
       format.html {redirect_to mypage_path(current_user)}
       format.js
@@ -25,7 +27,7 @@ class SchedulesController < ApplicationController
   def update
     @schedule = Schedule.find(params[:id])
     @schedule.update!(edit_schedule_parameter)
-    @user = current_user#User.find(params[:id])
+    @user = current_user
     @schedules = Schedule.where(user_id: @user.id)
     respond_to do |format|
       format.html {redirect_to mypage_path(current_user)}
