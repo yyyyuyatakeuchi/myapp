@@ -1,7 +1,7 @@
-<%= month_calendar events: schedules do |date, schedules2| %>
+<%= month_calendar events: schedules do |date, schedulesContent| %>
   <div class="calendar_day"><%= date.day %></div>
   <%= link_to "編集", new_schedule_path(inDate: date), remote: true, class: "calendar_editLink" if @user == current_user %>
-  <% schedules2.each do |schedule| %>
+  <% schedulesContent.each do |schedule| %>
     <% color = "green" if schedule.availability == "◯" %>
     <% color = "yellow" if schedule.availability == "△" %>
     <div class="ava_content <%= color %>", id="<%=@user.id%>_<%=schedule.inDate%>"><%= schedule.availability %></div>

@@ -1,6 +1,6 @@
-<%= week_calendar(number_of_weeks: 2, events: schedules)  do |date, schedules2| %>
+<%= week_calendar(number_of_weeks: 2, events: schedules)  do |date, schedulesContent| %>
   <div class="calendar_day"><%= date.day %></div>
-  <% schedules2.each do |schedule| %>
+  <% schedulesContent.each do |schedule| %>
     <% color = "green" if schedule.availability == "◯" %>
     <% color = "yellow" if schedule.availability == "△" %>
     <div class="ava_content <%= color %>", id="<%=@user.id%>_<%=schedule.inDate%>"><%= schedule.availability %></div>
