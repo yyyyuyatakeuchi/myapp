@@ -1,6 +1,6 @@
 twitter:
-  twitter_api_key: 'bFkyRiGIaRn4vmG4rCAvcgIoU'
-  twitter_api_secret: 'MTtNSJTFpQDFnm3Cx80zCQmgZqckfEldPzNhTgsXHnuPrLlfF7'
+  twitter_api_key: "bFkyRiGIaRn4vmG4rCAvcgIoU"
+  twitter_api_secret: "MTtNSJTFpQDFnm3Cx80zCQmgZqckfEldPzNhTgsXHnuPrLlfF7"
 
 mailer:
   smtp_user_name: 'yuzaizhunei@gmail.com'

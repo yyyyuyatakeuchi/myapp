@@ -18,18 +18,17 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:twitter]
 
   def self.from_omniauth(auth)
-    where(uid: auth.uid).first
-  end
-      
-  def self.new_with_session(_, session)
-    super.tap do |user|
-      if (data = session['devise.omniauth_data'])
-        user.email = data['email'] if user.email.blank?
-        user.provider = data['provider'] if data['provider'] && user.provider.blank?
-        user.uid = data['uid'] if data['uid'] && user.uid.blank?
-        user.skip_confirmation!
-      end
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = (auth.provider == 'twitter' ? auth.info.nickname : auth.name)
+      user.email = User.dummy_email(auth)
+      user.password = Devise.friendly_token[0, 20] # ランダムなパスワードを作成
     end
+  end
+
+  def self.dummy_email(auth)
+    "#{auth.uid}-#{auth.provider}@example.com"
   end
 
   def follow(other_user)
