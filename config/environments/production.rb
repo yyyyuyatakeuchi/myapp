@@ -20,7 +20,18 @@ Rails.application.configure do
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
   
-
+  config.action_mailer.default_url_options = { :host => 'https://lit-beyond-54168.herokuapp.com/' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:'smtp.gmail.com',
+    domain: 'smtp.gmail.com',
+    port: 587,
+    user_name: Settings.mailer.smtp_user_name,
+    password: Settings.mailer.smtp_password,
+    authentication: :login,
+    enable_starttls_auto: true
+  }
   
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
