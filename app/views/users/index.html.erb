@@ -20,7 +20,7 @@
   <div class="col-md-8">
     <p class="indexSubTitle">※「◯」…空いてます 「△」…調整可能です 「×」…厳しいです 「ー」…未定</p>
     <ul class="talentUsers">
-      <%= render @users %>
+      <%= render @users if @users.any?%>
     </ul>
     <%= paginate @users%>
   </div>
