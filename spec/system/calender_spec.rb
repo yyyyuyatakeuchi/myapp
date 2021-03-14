@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Mypage", type: :system do
+RSpec.describe "Calender", type: :system do
 
   before do
     @talent_user = FactoryBot.create(:user, name: "aaa", address: "tokyo", isTalent: true, isPublic: true)
@@ -15,7 +15,7 @@ RSpec.describe "Mypage", type: :system do
     click_link "編集", href: "/schedules/new?inDate=#{Time.zone.today.strftime}"
     expect(page).to have_content("×（厳しいです）")
     #find('label[for=schedule_×（厳しいです）]').click
-    click_button "Update Schedule"
+    click_button "更新する"
     expect(page).to have_content "以上"
     expect(page).to have_content "ー"
   end

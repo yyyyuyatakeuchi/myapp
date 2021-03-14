@@ -14,7 +14,7 @@ RSpec.describe "Mypage", type: :system do
       sign_in @user
       visit mypage_path(@user)
       expect(page).to have_link("アカウント情報編集")
-      expect(page).to have_link("DM一覧ページ")
+      expect(page).to have_link("DM一覧ページへ")
     end
   end
 
@@ -23,7 +23,7 @@ RSpec.describe "Mypage", type: :system do
       sign_in @talent_user
       visit mypage_path(@talent_user)
       expect(page).to have_link("アカウント情報編集")
-      expect(page).to have_link("DM一覧ページ")
+      expect(page).to have_link("DM一覧ページへ")
       expect(page).to have_link("#{@talent_user.name}")
       expect(page).to have_link("一般公開中")
       expect(page).to have_link("プロフィール編集")
