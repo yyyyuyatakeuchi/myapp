@@ -27,6 +27,7 @@
 
 <% else %>
 <h2><%= current_user.name %></h2>
+<h4><%= link_to "【DM一覧ページへ】", rooms_path %></h4>
 <h4>フォロー中の芸人一覧</h4>
 <ul class="all_users">
   <% if @users.any? %>

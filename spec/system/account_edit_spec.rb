@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Mypage", type: :system do
+RSpec.describe "AccountEdit", type: :system do
 
   before do
     @user = FactoryBot.create(:user)
@@ -15,11 +15,11 @@ RSpec.describe "Mypage", type: :system do
     click_link "アカウント情報編集"
     #expect(page).to have_content("#{@user.name}")
     expect(page).to have_content("Name")
-    expect(page).to have_content("Email")
+    expect(page).to have_content("Eメール")
     expect(page).to have_content("Address")
-    expect(page).to have_content("Password")
-    expect(page).to have_content("Password confirmation")
-    expect(page).to have_content("Current password")
+    expect(page).to have_content("パスワード")
+    expect(page).to have_content("パスワード（確認用）")
+    expect(page).to have_content("現在のパスワード")
   end
 
   scenario "一般ユーザーマイページ、アカウント情報編集" do
@@ -27,7 +27,7 @@ RSpec.describe "Mypage", type: :system do
     visit mypage_path(@user)
     click_link "アカウント情報編集"
     fill_in 'Name', with: 'サンプルユーザー'
-    fill_in 'Current password', with: 'password'
+    fill_in '現在のパスワード', with: 'password'
     click_button "変更"
     expect(current_path).to eq mypage_path(@user) 
     expect(@user.reload.name).to eq "サンプルユーザー" 
@@ -38,11 +38,11 @@ RSpec.describe "Mypage", type: :system do
     visit mypage_path(@talent_user)
     click_link "アカウント情報編集"
     expect(page).to have_content("Name")
-    expect(page).to have_content("Email")
+    expect(page).to have_content("Eメール")
     expect(page).to have_content("Address")
-    expect(page).to have_content("Password")
-    expect(page).to have_content("Password confirmation")
-    expect(page).to have_content("Current password")
+    expect(page).to have_content("パスワード")
+    expect(page).to have_content("パスワード（確認用）")
+    expect(page).to have_content("現在のパスワード")
     expect(page).to have_content("一般公開する")
     expect(page).to have_content("非公開にする")
   end

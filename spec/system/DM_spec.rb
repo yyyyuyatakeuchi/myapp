@@ -9,7 +9,7 @@ RSpec.describe "DM", type: :system do
     @talent_user.schedules.create(availability: "◯", inDate: Time.zone.today.strftime, start_time: "#{Time.zone.today.strftime} 00:00:00")
   end
 
-  scenario "一般ユーザーマイページ" do
+  scenario "ダイレクトメッセージ送信" do
     sign_in @user
     visit mypage_path(@talent_user)
     click_on "ダイレクト・チャット", match: :first
@@ -20,7 +20,7 @@ RSpec.describe "DM", type: :system do
     visit mypage_path(@talent_user)
     expect(page).to have_link "チャットルームへ"
     visit mypage_path(@user)
-    click_link "DM一覧ページ"
+    click_link "DM一覧ページへ"
     expect(page).to have_link "#{@talent_user.name}"
     expect(page).to have_link "こんにちは"
     click_link "こんにちは"
