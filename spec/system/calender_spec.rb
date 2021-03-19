@@ -8,13 +8,12 @@ RSpec.describe "Calender", type: :system do
     @talent_user.schedules.create(availability: "◯", inDate: Time.zone.today.strftime, start_time: "#{Time.zone.today.strftime} 00:00:00")
   end
 
-  scenario "一般ユーザーマイページ、アカウント情報編集" do
+  scenario "カレンダーの表示を変更できる" do
     sign_in @talent_user
     visit mypage_path(@talent_user)
     expect(page).to have_content("◯")
     click_link "編集", href: "/schedules/new?inDate=#{Time.zone.today.strftime}"
     expect(page).to have_content("×（厳しいです）")
-    #find('label[for=schedule_×（厳しいです）]').click
     click_button "更新する"
     expect(page).to have_content "以上"
     expect(page).to have_content "ー"

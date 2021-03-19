@@ -9,7 +9,7 @@ RSpec.describe "DM", type: :system do
     @talent_user.schedules.create(availability: "◯", inDate: Time.zone.today.strftime, start_time: "#{Time.zone.today.strftime} 00:00:00")
   end
 
-  scenario "ダイレクトメッセージ送信" do
+  scenario "ダイレクトメッセージ送信後、メッセージルームへのリンクの表示が変わり、DM一覧が更新される" do
     sign_in @user
     visit mypage_path(@talent_user)
     click_on "ダイレクト・チャット", match: :first
@@ -17,8 +17,10 @@ RSpec.describe "DM", type: :system do
     fill_in "message_body", with: "こんにちは"
     click_button "投稿"
     expect(page).to have_content "こんにちは"
+
     visit mypage_path(@talent_user)
     expect(page).to have_link "チャットルームへ"
+    
     visit mypage_path(@user)
     click_link "DM一覧ページへ"
     expect(page).to have_link "#{@talent_user.name}"
