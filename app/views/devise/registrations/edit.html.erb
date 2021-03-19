@@ -3,12 +3,11 @@
 <h2>編集画面 <% resource_name.to_s.humanize %></h2>
 
 <div class="gravatar_edit">
-      <%= gravatar_for @user %><br><br>
-      <a href="https://gravatar.com/emails" target="_blank">change</a>
-    </div>
+  <%= gravatar_for @user %><br><br>
+  <a href="https://gravatar.com/emails" target="_blank">change</a>
+</div>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
     <% if @user.isTalent%>
         <div class="ragioPublic">
           <div class="box">

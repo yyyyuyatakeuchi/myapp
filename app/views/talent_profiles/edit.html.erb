@@ -1,6 +1,7 @@
 <% provide(:title, "#{@user.name}｜プロフィール編集") %>
 
 <%= form_with(model: @user, url:talent_profile_path, local: true) do |f| %>
+<%= render "devise/shared/error_messages", resource: @user %>
   <%= f.label :name, "name" %>
   <%= f.text_field :name, class: 'form-control' %>
 
