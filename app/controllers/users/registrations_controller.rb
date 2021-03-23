@@ -15,18 +15,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    @user = User.new(sign_up_params)
-    @followed_user = params[:followed_user]
-    if @user.save
-      session["devise.regist_data"] = {user: @user.attributes}
-      session["devise.regist_data"][:user]["password"] = params[:user][:password]
-      @user.create_talent_profile if @user.isTalent
-      sign_in(:user, @user)
-      flash[:info] = 'ユーザー登録できました'
-      redirect_back_or @user
-    else
-      @talent_signup = @user.isTalent
-      render :new
+    ActiveRecord::Base.transaction do
+      @user = User.new(sign_up_params)
+      @followed_user = params[:followed_user]
+      if @user.save!
+        session["devise.regist_data"] = {user: @user.attributes}
+        session["devise.regist_data"][:user]["password"] = params[:user][:password]
+        @user.create_talent_profile! if @user.isTalent
+        sign_in(:user, @user)
+        flash[:info] = 'ユーザー登録できました'
+        redirect_back_or @user
+      else
+        @talent_signup = @user.isTalent
+        render :new
+      end
     end
   end
 

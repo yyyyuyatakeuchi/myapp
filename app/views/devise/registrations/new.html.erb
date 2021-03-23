@@ -13,25 +13,25 @@
 
       <div class="field">
         <%= f.label :name %><br />
-        <%= f.text_field :name, class: 'form-control' %>
+        <%= f.text_field :name, placeholder: "名前を入力してください", class: 'form-control' %>
       </div>
 
       <div class="field">
         <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールだよ", class: 'form-control' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレスを入力してください", class: 'form-control' %>
       </div>
 
       <div class="field">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control'%>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワードを入力してください", class: 'form-control'%>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control'%>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワードを入力してください", class: 'form-control'%>
       </div>
 
       <div class="field">
