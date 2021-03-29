@@ -1,4 +1,4 @@
-<%= month_calendar events: schedules do |date, schedulesContent| %>
+<%= week_calendar(number_of_weeks: 4, events: schedules)  do |date, schedulesContent| %>
   <div class="calendar_day"><%= date.day %></div>
   <%= link_to "編集", new_schedule_path(inDate: date), remote: true, class: "calendar_editLink" if @user == current_user %>
   <% schedulesContent.each do |schedule| %>

@@ -6,7 +6,7 @@ class StaticPagesController < ApplicationController
   def new_guest
     email = "#{SecureRandom.base64(10)}@guest.com"
     user = User.find_or_create_by!(name: 'GuestUser', email: email, isTalent: params[:talent]) do |user|
-      user.password = SecureRandom.urlsafe_base64
+      user.password = "password"
       user.confirmed_at = Time.now
       user.created_at = Time.current.prev_year
     end
